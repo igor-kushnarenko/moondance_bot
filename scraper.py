@@ -1,14 +1,9 @@
 import requests
 from bs4 import BeautifulSoup as bs4
 
-URL_LIST = ['https://ru.astro-seek.com/faza-luny-kalendar-lunnyh-faz-onlayn-oktyabr-2020',
-            'https://ru.astro-seek.com/faza-luny-kalendar-lunnyh-faz-onlayn-noyabr-2020',
-            'https://ru.astro-seek.com/faza-luny-kalendar-lunnyh-faz-onlayn-dekabr-2020'
-            ]
-
+# для смены месяцев в адресе нужно заменить названия месяцев
 THIS_MONTH = ['https://ru.astro-seek.com/faza-luny-kalendar-lunnyh-faz-onlayn-oktyabr-2020',]
 NEXT_MONTH = ['https://ru.astro-seek.com/faza-luny-kalendar-lunnyh-faz-onlayn-noyabr-2020',]
-
 
 HEADERS = {
     'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
