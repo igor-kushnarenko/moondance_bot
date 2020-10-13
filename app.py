@@ -3,6 +3,7 @@ from telebot.types import Message
 
 from settings import TOKEN
 from keyboards import main_keyboard
+from scraper import phase_text
 
 bot = telebot.TeleBot(TOKEN)
 
@@ -22,14 +23,8 @@ def send_answer(message: Message):
     if text == '❓ Луна сегодня':
         bot.send_message(message.chat.id, '🌖 Сегодня убывающая луна', reply_markup=keyboard)
 
-    elif text == '🌕 Следующее полнолуние':
-        bot.send_message(message.chat.id, 'Следующее полнолуние 31 октября в 14:49', reply_markup=keyboard)
-
-    elif text == '🌑 Следующее новолуние':
-        bot.send_message(message.chat.id, 'Следующее новолуние 16 октября в 19:30', reply_markup=keyboard)
-
-
-
+    elif text == '🌕 Полнолуния и 🌑 Новолуния':
+        bot.send_message(message.chat.id, phase_text, reply_markup=keyboard)
 
 
 bot.polling()
