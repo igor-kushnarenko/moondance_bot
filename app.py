@@ -3,7 +3,7 @@ from telebot.types import Message
 
 from settings import TOKEN
 from keyboards import main_keyboard
-from scraper import phase_text_this_month, phase_text_next_month
+from calculate_month import THIS_M, NEXT_M
 
 bot = telebot.TeleBot(TOKEN)
 
@@ -26,10 +26,10 @@ def send_answer(message: Message):
         bot.send_message(message.chat.id, '🌖 Сегодня убывающая луна', reply_markup=keyboard)
 
     elif text == '🌕 В этом месяце 🌑':
-        bot.send_message(message.chat.id, phase_text_this_month, reply_markup=keyboard)
+        bot.send_message(message.chat.id, THIS_M, reply_markup=keyboard)
 
     elif text == '🌕 В следующем месяце 🌑':
-        bot.send_message(message.chat.id, phase_text_next_month, reply_markup=keyboard)
+        bot.send_message(message.chat.id, NEXT_M, reply_markup=keyboard)
 
 
 bot.polling()
