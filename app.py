@@ -5,7 +5,7 @@ import time
 
 from settings import TOKEN
 from keyboards import main_keyboard
-from print_months import THIS_M, NEXT_M
+from print_months import THIS_M, NEXT_M, SEND_ALERT
 
 bot = telebot.TeleBot(TOKEN)
 
@@ -15,11 +15,11 @@ def send_welcome(message):
     bot.send_message(message.chat.id, 'Приветствую тебя дорогой друг!\n'
                                       'С моей помощью, ты сможешь следить за фазами Луны,\n'
                                       'Для начала работы, выберите МЕНЮ.\n', reply_markup=keyboard)
-    while True:
+    while True: # TODO исправить костыль по отправке напоминаний пользователям
         times = datetime.datetime.now().strftime('%H:%M')
-        if times == '10:23':
-            if day_x:
-                bot.send_message(message.from_user.id, 'ALERT!!!!!!')
+        if times == '09:00':
+            if SEND_ALERT != None:
+                bot.send_message(message.from_user.id, SEND_ALERT) # todo добавить массив для сохранения from_user.id
         time.sleep(60)
 
 
