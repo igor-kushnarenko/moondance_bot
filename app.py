@@ -3,7 +3,7 @@ from telebot.types import Message
 
 from settings import TOKEN
 from keyboards import main_keyboard
-from calculate_month import THIS_M, NEXT_M
+from print_months import THIS_M, NEXT_M
 
 bot = telebot.TeleBot(TOKEN)
 
