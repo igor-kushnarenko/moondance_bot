@@ -17,7 +17,7 @@ def send_alert():
             if tomorrow == date:
                 moon = moon_type[0]
                 time = moon_type[1]
-                send_alert_message = f'Завтра в {time}, будет {moon}!'
+                send_alert_message = f'Завтра в {time} будет {moon}!'
                 return send_alert_message
 
 
