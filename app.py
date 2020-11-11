@@ -1,5 +1,7 @@
 import telebot
 from telebot.types import Message
+import datetime
+import time
 
 from settings import TOKEN
 from keyboards import main_keyboard
@@ -13,6 +15,13 @@ def send_welcome(message):
     bot.send_message(message.chat.id, 'Приветствую тебя дорогой друг!\n'
                                       'С моей помощью, ты сможешь следить за фазами Луны,\n'
                                       'Для начала работы, выберите МЕНЮ.\n', reply_markup=keyboard)
+    while True:
+        times = datetime.datetime.now().strftime('%H:%M')
+        if times == '10:23':
+            bot.send_message(message.from_user.id, 'ALERT!!!!!!')
+        else:
+            pass
+        time.sleep(60)
 
 
 keyboard = main_keyboard()
