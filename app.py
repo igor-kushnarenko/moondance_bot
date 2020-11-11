@@ -18,9 +18,8 @@ def send_welcome(message):
     while True:
         times = datetime.datetime.now().strftime('%H:%M')
         if times == '10:23':
-            bot.send_message(message.from_user.id, 'ALERT!!!!!!')
-        else:
-            pass
+            if day_x:
+                bot.send_message(message.from_user.id, 'ALERT!!!!!!')
         time.sleep(60)
 
 

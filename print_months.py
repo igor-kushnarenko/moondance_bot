@@ -12,18 +12,21 @@ next_month = today + datetime.timedelta(days=plus_one_month)
 
 
 def send_alert(date, moon, time):
-    if date == tomorrow:
+    if tomorrow == date:
         send_alert_message = f'Завтра в {time}, будет {moon}!'
         return send_alert_message
 
 
-def print_result_month(monthes):
+def print_result_month(months):
     output = []
     for month, value in days_dict.items():
-        if month == monthes:
+        if month == months:
             for date, moon_type in value.items():
                 moon = moon_type[0]
                 time = moon_type[1]
+
+                print_send_alert = send_alert(date, moon, time)
+
                 output.append(f'{moon} будет {date} в {time}')
     str_output = '\n'.join(output)
     return str_output
