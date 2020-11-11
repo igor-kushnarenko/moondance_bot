@@ -2,7 +2,6 @@ import telebot
 from telebot.types import Message
 import datetime
 import time
-
 from settings import TOKEN
 from keyboards import main_keyboard
 from print_months import THIS_M, NEXT_M, SEND_ALERT
@@ -29,13 +28,10 @@ keyboard = main_keyboard()
 @bot.message_handler(content_types=['text'])
 def send_answer(message: Message):
     text = message.text
-
     if text == '❓ Луна сегодня':
         bot.send_message(message.chat.id, '🌖 Сегодня убывающая луна', reply_markup=keyboard)
-
     elif text == '🌕 В этом месяце 🌑':
         bot.send_message(message.chat.id, THIS_M, reply_markup=keyboard)
-
     elif text == '🌕 В следующем месяце 🌑':
         bot.send_message(message.chat.id, NEXT_M, reply_markup=keyboard)
 
