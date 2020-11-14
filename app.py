@@ -1,3 +1,5 @@
+import pickle
+
 import telebot
 from telebot.types import Message
 import datetime
@@ -5,13 +7,15 @@ import time
 from settings import TOKEN
 from keyboards import main_keyboard
 from print_months import THIS_M, NEXT_M, SEND_ALERT
+from add_user import add_user
 
 bot = telebot.TeleBot(TOKEN)
 
 
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
-    bot.send_message(message.chat.id, 'Приветствую тебя дорогой друг!\n'
+    add_user(message.from_user.id)
+    bot.send_message(message.chat.id, f'Приветствую тебя, {message.from_user.first_name}!\n'
                                       'С моей помощью, ты сможешь следить за фазами Луны,\n'
                                       'Для начала работы, выберите МЕНЮ.\n', reply_markup=keyboard)
     while True:  # TODO исправить костыль по отправке напоминаний пользователям
