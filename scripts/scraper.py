@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup as bs4
 
+
 # для смены месяцев в адресе нужно заменить названия месяцев
 THIS_MONTH = ['https://ru.astro-seek.com/faza-luny-kalendar-lunnyh-faz-onlayn-oktyabr-2020',]
 NEXT_MONTH = ['https://ru.astro-seek.com/faza-luny-kalendar-lunnyh-faz-onlayn-noyabr-2020',]

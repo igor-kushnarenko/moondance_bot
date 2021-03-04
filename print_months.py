@@ -1,7 +1,9 @@
 import datetime
 import locale
 import calendar
+
 from data_set import days_dict
+
 locale.setlocale(locale.LC_ALL, 'ru_RU.UTF-8')
 
 today = datetime.date.today()
