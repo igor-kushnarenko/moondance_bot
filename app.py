@@ -48,4 +48,10 @@ def send_answer(message: Message):
         )
 
 
-bot.polling()
+if __name__ == '__main__':
+    while True:
+        try:
+            bot.polling(none_stop=True)
+        except Exception as ex:
+            time.sleep(3)
+            print(ex)
