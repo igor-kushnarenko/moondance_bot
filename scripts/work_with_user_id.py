@@ -2,7 +2,7 @@ import pickle
 from datetime import datetime
 
 
-file_data = 'scripts/user_id.pickle'
+file_data = 'user_id.pickle'
 
 
 def create_new_pickle_file():
@@ -32,3 +32,9 @@ def read_user_set():
         user_id = pickle.load(f)
         answer = f'Всего уникальных пользователей: {len(user_id)}'
         return answer
+
+
+def get_user_massives():
+    with open(file_data, 'rb') as f:
+        user_id = pickle.load(f)
+        return user_id

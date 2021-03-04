@@ -1,13 +1,12 @@
 import datetime
 import time
-import pickle
 
 import telebot
 from telebot.types import Message
 
-from add_user import add_user, read_user_set
+from scripts.work_with_user_id import add_user, read_user_set, get_user_massives
 from keyboards import main_keyboard
-from print_months import THIS_M, NEXT_M, SEND_ALERT
+from scripts.print_months import THIS_M, NEXT_M, send_alert
 from settings import TOKEN
 
 bot = telebot.TeleBot(TOKEN)
@@ -16,15 +15,11 @@ bot = telebot.TeleBot(TOKEN)
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
     add_user(message)
+    message_alert = send_alert()
+    users_massive = get_user_massives()
     bot.send_message(message.chat.id, f'Приветствую тебя, {message.from_user.first_name}!\n'
                                       'С моей помощью, ты сможешь следить за фазами Луны,\n'
                                       'Для начала работы, выберите МЕНЮ.\n', reply_markup=keyboard)
-    # while True:  # TODO исправить костыль по отправке напоминаний пользователям
-    #     times = datetime.datetime.now().strftime('%H:%M')
-    #     if times == '09:00':
-    #         if SEND_ALERT != None:
-    #             bot.send_message(message.from_user.id, SEND_ALERT)  # todo добавить массив для сохранения from_user.id
-    #     time.sleep(60)
 
 
 keyboard = main_keyboard()
