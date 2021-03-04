@@ -35,7 +35,20 @@ def print_result_month(months):
     return str_output
 
 
+# def today_moon(months):
+#     output = []
+#     for month, value in days_dict.items():
+#         if month == months:
+#             for date, moon_type in value.items():
+#                 moon = moon_type[0]
+#                 time = moon_type[1]
+#                 output.append(f'{moon} будет {date} в {time}')
+#     str_output = '\n'.join(output)
+#     return str_output
+
+
 THIS_M = print_result_month(today.month)
 NEXT_M = print_result_month(next_month.month)
+# TODAY_M = today_moon()
 
 SEND_ALERT = send_alert()

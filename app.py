@@ -35,9 +35,9 @@ def send_answer(message: Message):
     text = message.text
     if text == '❓ Луна сегодня':
         bot.send_message(message.chat.id, '🌖 Сегодня убывающая луна', reply_markup=keyboard)
-    elif text == '❓ В этом месяце':
+    elif text == '🌑 В этом месяце 🌕':
         bot.send_message(message.chat.id, THIS_M, reply_markup=keyboard)
-    elif text == '❓ В следующем месяце':
+    elif text == '🌑 В следующем месяце 🌕':
         bot.send_message(message.chat.id, NEXT_M, reply_markup=keyboard)
     elif message.text == 'Статистика':
         answer = read_user_set()
