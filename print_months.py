@@ -29,8 +29,12 @@ def print_result_month(months):
         if month == months:
             for date, moon_type in value.items():
                 moon = moon_type[0]
-                time = moon_type[1]
-                output.append(f'{moon} будет {date} в {time}')
+                if moon == 'ПОЛНОЛУНИЕ':
+                    time = moon_type[1]
+                    output.append(f'🌕 - {date} в {time}')
+                elif moon == 'НОВОЛУНИЕ':
+                    time = moon_type[1]
+                    output.append(f'🌑 - {date} в {time}')
     str_output = '\n'.join(output)
     return str_output
 
