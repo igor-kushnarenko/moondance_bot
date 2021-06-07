@@ -6,7 +6,7 @@ from telebot.types import Message
 
 from scripts.work_with_user_id import add_user, read_user_set, get_user_massives
 from keyboards import main_keyboard
-from scripts.print_months import this_month, next_m, send_alert
+from scripts.print_months import this_month, next_m
 from settings import TOKEN
 
 bot = telebot.TeleBot(TOKEN)
