@@ -15,7 +15,6 @@ bot = telebot.TeleBot(TOKEN)
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
     add_user(message)
-    message_alert = send_alert()
     users_massive = get_user_massives()
     bot.send_message(message.chat.id, f'Приветствую тебя, {message.from_user.first_name}!\n'
                                       'С моей помощью, ты сможешь следить за фазами Луны,\n'
