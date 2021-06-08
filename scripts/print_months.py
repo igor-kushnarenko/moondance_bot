@@ -6,41 +6,35 @@ from data_set import days_dict
 
 locale.setlocale(locale.LC_ALL, 'ru_RU.UTF-8')
 
-today = datetime.date.today()
-plus_one_day = datetime.datetime.today() + datetime.timedelta(days=1)
 
-tomorrow = plus_one_day.strftime('%d %B')
-plus_one_month = calendar.monthrange(today.year, today.month)[1]
-next_month = today + datetime.timedelta(days=plus_one_month)
-
-
-# def send_alert():
-#     for month, value in days_dict.items():
-#         for date, moon_type in value.items():
-#             if tomorrow == date:
-#                 moon = moon_type[0]
-#                 time = moon_type[1]
-#                 send_alert_message = f'Завтра в {time} будет {moon}!'
-#                 return send_alert_message
+def calculate(value, list):
+    for date, moon_type in value.items():
+        moon = moon_type[0]
+        if moon == 'ПОЛНОЛУНИЕ':
+            time = moon_type[1]
+            list.append(f'🌕 - {date} в {time}')
+        elif moon == 'НОВОЛУНИЕ':
+            time = moon_type[1]
+            list.append(f'🌑 - {date} в {time}')
 
 
-def print_result_month(months):
-    output = []
+def print_result_month():
+    today = datetime.date.today()
+    plus_one_month = calendar.monthrange(today.year, today.month)[1]
+    next_month = today + datetime.timedelta(days=plus_one_month)
+
+    this_month_output = []
+    next_month_output = []
     for month, value in days_dict.items():
-        if month == months:
-            for date, moon_type in value.items():
-                moon = moon_type[0]
-                if moon == 'ПОЛНОЛУНИЕ':
-                    time = moon_type[1]
-                    output.append(f'🌕 - {date} в {time}')
-                elif moon == 'НОВОЛУНИЕ':
-                    time = moon_type[1]
-                    output.append(f'🌑 - {date} в {time}')
-    str_output = '\n'.join(output)
-    return str_output
+        if month == today.month:
+            calculate(value, this_month_output)
+        elif month == next_month.month:
+            calculate(value, next_month_output)
+
+    this_month_output = '\n'.join(this_month_output)
+    next_month_output = '\n'.join(next_month_output)
+    return this_month_output, next_month_output
 
 
-this_month = print_result_month(today.month)
-next_m = print_result_month(next_month.month)
-
-# send_alert = send_alert()
+this_month = print_result_month()[0]
+next_m = print_result_month()[1]
