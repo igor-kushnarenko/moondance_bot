@@ -57,7 +57,6 @@ def scraper(URL):
 
 def get_strings_news(data_list):
     acc = []
-    # print(data_list)
     for i in data_list:
         acc.append(f"{i['date']}\n{i['title']}")
     acc_string = '\n'.join(acc)
@@ -69,6 +68,3 @@ next_month = scraper(NEXT_MONTH)
 
 phase_text_this_month = get_strings_news(this_month)
 phase_text_next_month = get_strings_news(next_month)
-
-print(phase_text_this_month)
-print(phase_text_next_month)

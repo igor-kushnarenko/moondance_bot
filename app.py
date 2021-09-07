@@ -3,24 +3,23 @@ import time
 import telebot
 from telebot.types import Message
 
-from scripts.work_with_user_id import add_user, read_user_set, get_user_massives
-from keyboards import main_keyboard
+from scripts.work_with_user_id import add_user, read_user_set
 from scripts.scraper import phase_text_this_month, phase_text_next_month
 from settings import TOKEN
 
 bot = telebot.TeleBot(TOKEN)
 
+keyboard = telebot.types.ReplyKeyboardMarkup(True, True)
+keyboard.row('▶️ В этом месяце')
+keyboard.row('⏩ В следующем месяце')
+
 
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
     add_user(message)
-    users_massive = get_user_massives()
     bot.send_message(message.chat.id, f'Приветствую тебя, {message.from_user.first_name}!\n'
                                       'С моей помощью, ты сможешь следить за фазами Луны,\n'
                                       'Для начала работы, выберите МЕНЮ.\n', reply_markup=keyboard)
-
-
-keyboard = main_keyboard()
 
 
 @bot.message_handler(content_types=['text'])
