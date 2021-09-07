@@ -1,10 +1,34 @@
+from datetime import datetime
+
 import requests
 from bs4 import BeautifulSoup as bs4
 
 
+def get_urls():
+    today = datetime.today()
+    year = today.year
+    this_month = today.month
+    next_month = this_month + 1
+    this_month_url = f'https://ru.astro-seek.com/faza-luny-kalendar-lunnyh-faz-onlayn?' \
+                     f'narozeni_city=Anapa%2C+Russia&narozeni_input_hidden=&narozeni_hidden_local_tz=1' \
+                     f'&narozeni_stat_hidden=RU&narozeni_podstat_hidden=Krasnodarskiy&narozeni_podstat_kratky_hidden=' \
+                     f'&narozeni_podstat2_kratky_hidden=&narozeni_podstat3_kratky_hidden=&narozeni_mesto_hidden=Anapa' \
+                     f'&narozeni_den=&narozeni_mesic={this_month}&narozeni_rok={year}&tolerance=1&narozeni_sirka_stupne=44' \
+                     f'&narozeni_sirka_minuty=53&narozeni_sirka_smer=0&narozeni_delka_stupne=37' \
+                     f'&narozeni_delka_minuty=19&narozeni_delka_smer=0#select_local_tz_anchor'
+    next_month_url = f'https://ru.astro-seek.com/faza-luny-kalendar-lunnyh-faz-onlayn?' \
+                     f'narozeni_city=Anapa%2C+Russia&narozeni_input_hidden=&narozeni_hidden_local_tz=1' \
+                     f'&narozeni_stat_hidden=RU&narozeni_podstat_hidden=Krasnodarskiy&narozeni_podstat_kratky_hidden=' \
+                     f'&narozeni_podstat2_kratky_hidden=&narozeni_podstat3_kratky_hidden=&narozeni_mesto_hidden=Anapa' \
+                     f'&narozeni_den=&narozeni_mesic={next_month}&narozeni_rok={year}&tolerance=1&narozeni_sirka_stupne=44' \
+                     f'&narozeni_sirka_minuty=53&narozeni_sirka_smer=0&narozeni_delka_stupne=37' \
+                     f'&narozeni_delka_minuty=19&narozeni_delka_smer=0#select_local_tz_anchor'
+    return this_month_url, next_month_url
+
+
 # для смены месяцев в адресе нужно заменить названия месяцев
-THIS_MONTH = ['https://ru.astro-seek.com/faza-luny-kalendar-lunnyh-faz-onlayn-sentyabr-2021',]
-NEXT_MONTH = ['https://ru.astro-seek.com/faza-luny-kalendar-lunnyh-faz-onlayn-oktyabr-2021',]
+THIS_MONTH = [get_urls()[0]]
+NEXT_MONTH = [get_urls()[1]]
 
 HEADERS = {
     'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
@@ -36,7 +60,7 @@ def get_strings_news(data_list):
     # print(data_list)
     for i in data_list:
         acc.append(f"{i['date']}\n{i['title']}")
-    acc_string = '\n\n'.join(acc)
+    acc_string = '\n'.join(acc)
     return acc_string
 
 
@@ -45,3 +69,6 @@ next_month = scraper(NEXT_MONTH)
 
 phase_text_this_month = get_strings_news(this_month)
 phase_text_next_month = get_strings_news(next_month)
+
+print(phase_text_this_month)
+print(phase_text_next_month)

@@ -1,4 +1,3 @@
-import datetime
 import time
 
 import telebot
@@ -6,7 +5,7 @@ from telebot.types import Message
 
 from scripts.work_with_user_id import add_user, read_user_set, get_user_massives
 from keyboards import main_keyboard
-from scripts.print_months import this_month, next_m
+from scripts.scraper import phase_text_this_month, phase_text_next_month
 from settings import TOKEN
 
 bot = telebot.TeleBot(TOKEN)
@@ -30,9 +29,9 @@ def send_answer(message: Message):
     if text == '❓ Луна сегодня':
         bot.send_message(message.chat.id, '🌖 Сегодня убывающая луна', reply_markup=keyboard)
     elif text == '▶️ В этом месяце':
-        bot.send_message(message.chat.id, this_month, reply_markup=keyboard)
+        bot.send_message(message.chat.id, phase_text_this_month, reply_markup=keyboard)
     elif text == '⏩ В следующем месяце':
-        bot.send_message(message.chat.id, next_m, reply_markup=keyboard)
+        bot.send_message(message.chat.id, phase_text_next_month, reply_markup=keyboard)
     elif message.text == 'Статистика':
         answer = read_user_set()
         bot.send_message(
