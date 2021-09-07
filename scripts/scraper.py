@@ -26,7 +26,6 @@ def get_urls():
     return this_month_url, next_month_url
 
 
-# для смены месяцев в адресе нужно заменить названия месяцев
 THIS_MONTH = [get_urls()[0]]
 NEXT_MONTH = [get_urls()[1]]
 
@@ -47,11 +46,11 @@ def scraper(URL):
             date = i.find('a').get_text()
             ph = i.find('td', style='padding: 0 5px 0 5px;').get_text()
             if 'Полнолуние' in ph:
-                edit_phrase = ph.replace('Полнолуниев', 'Полнолуние в')
-                moon_data.append({'title': edit_phrase, 'date': date})
+                edit_phase = ph.replace('Полнолуниев', 'Полнолуние в')
+                moon_data.append({'title': edit_phase, 'date': date})
             elif 'НОВОЛУНИЕ' in ph:
-                new_phrase = ph.replace('НОВОЛУНИЕв', 'Новолуние в')
-                moon_data.append({'title': new_phrase, 'date': date})
+                new_phase = ph.replace('НОВОЛУНИЕв', 'Новолуние в')
+                moon_data.append({'title': new_phase, 'date': date})
     return moon_data
 
 
