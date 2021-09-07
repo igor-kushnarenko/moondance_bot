@@ -3,8 +3,8 @@ from bs4 import BeautifulSoup as bs4
 
 
 # для смены месяцев в адресе нужно заменить названия месяцев
-THIS_MONTH = ['https://ru.astro-seek.com/faza-luny-kalendar-lunnyh-faz-onlayn-oktyabr-2020',]
-NEXT_MONTH = ['https://ru.astro-seek.com/faza-luny-kalendar-lunnyh-faz-onlayn-noyabr-2020',]
+THIS_MONTH = ['https://ru.astro-seek.com/faza-luny-kalendar-lunnyh-faz-onlayn-sentyabr-2021',]
+NEXT_MONTH = ['https://ru.astro-seek.com/faza-luny-kalendar-lunnyh-faz-onlayn-oktyabr-2021',]
 
 HEADERS = {
     'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
@@ -23,14 +23,17 @@ def scraper(URL):
             date = i.find('a').get_text()
             ph = i.find('td', style='padding: 0 5px 0 5px;').get_text()
             if 'Полнолуние' in ph:
-                moon_data.append({'title': ph, 'date': date})
+                edit_phrase = ph.replace('Полнолуниев', 'Полнолуние в')
+                moon_data.append({'title': edit_phrase, 'date': date})
             elif 'НОВОЛУНИЕ' in ph:
-                moon_data.append({'title': ph, 'date': date})
+                new_phrase = ph.replace('НОВОЛУНИЕв', 'Новолуние в')
+                moon_data.append({'title': new_phrase, 'date': date})
     return moon_data
 
 
 def get_strings_news(data_list):
     acc = []
+    # print(data_list)
     for i in data_list:
         acc.append(f"{i['date']}\n{i['title']}")
     acc_string = '\n\n'.join(acc)
