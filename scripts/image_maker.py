@@ -17,7 +17,7 @@ class ImageMaker:
         print(self.db_row)
 
     def draw_card(self):
-        card_img = cv2.imread(self.card_template_path, cv2.IMREAD_COLOR) #TODO возвращает None
+        card_img = cv2.imread('static/base.jpg', cv2.IMREAD_COLOR) #TODO возвращает None
 
         font_scale = .9
         thickness = 1
